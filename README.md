@@ -29,6 +29,21 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+
+Real-world recommenders like Spotify use collaborative filtering (what similar users listened to) and content-based filtering (the actual attributes of songs). My version focuses on content-based filtering. It compares each song's features — genre, mood, energy, and valence — against a user's taste profile.
+Genre matches earn the most points (+2.0), mood matches earn +1.0, and numerical features like energy are scored by closeness to the user's target value (1 - |user_target - song_value|). The system then ranks all songs by total score and returns the top results.
+Features used per Song: genre, mood, energy, valence
+Features stored in UserProfile: favorite_genre, favorite_mood, target_energy, target_valence
+
+
+
+Algorithm Recipe:
+
+Genre match → +2.0 points
+Mood match → +1.0 point
+Energy, valence, tempo, danceability, acousticness, instrumentalness, speechiness, liveness → each scored as 1 - |user_target - song_value| (max 1.0 each)
+Potential bias: genre match alone (+2.0) outweighs any single numerical feature (max 1.0), so genre may dominate recommendations.
+
 ---
 
 ## Getting Started
@@ -209,3 +224,8 @@ A few sentences about what you learned:
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
 
+---
+
+## Terminal Output
+
+![Pop/Happy Profile Results](terminal_screenshot.png)

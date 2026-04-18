@@ -1,11 +1,19 @@
-id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
-1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18
-2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71
-3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10
-4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86
-5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05
-6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92
-7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89
-8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22
-9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78
-10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35
+id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness,instrumentalness,speechiness,liveness
+1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18,0.10,0.05,0.14
+2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71,0.22,0.04,0.12
+3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10,0.04,0.06,0.15
+4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86,0.30,0.03,0.10
+5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05,0.08,0.05,0.18
+6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92,0.85,0.02,0.05
+7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89,0.45,0.07,0.22
+8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22,0.65,0.03,0.13
+9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78,0.38,0.04,0.09
+10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35,0.10,0.06,0.16
+11,Golden Hour Drive,Sunset Rodeo,country,nostalgic,0.58,102,0.72,0.68,0.45,0.35,0.05,0.20
+12,Neon Skyline,Pixel Pulse,electronic,energetic,0.88,128,0.83,0.91,0.12,0.80,0.04,0.12
+13,Forest Whisper,Willow Reed,folk,peaceful,0.34,84,0.65,0.55,0.81,0.70,0.02,0.18
+14,Thunderheart,Iron Vale,metal,aggressive,0.96,146,0.35,0.62,0.06,0.05,0.03,0.25
+15,Moonlit Waltz,Orchestra Nova,classical,romantic,0.44,74,0.78,0.38,0.93,0.90,0.01,0.30
+16,Island Breeze,Rasta Groove,reggae,laid-back,0.55,96,0.70,0.67,0.72,0.15,0.06,0.18
+17,City Lights,Digital Dream,pop rock,hopeful,0.79,116,0.86,0.75,0.26,0.12,0.07,0.14
+18,Stardust Echo,Velvet Tides,dream pop,dreamy,0.62,98,0.80,0.66,0.40,0.28,0.04,0.11
