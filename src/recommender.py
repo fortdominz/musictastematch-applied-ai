@@ -108,17 +108,17 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
         reasons.append("mood match (+1.0)")
 
     numerical_features = [
-        ("energy", "target_energy"),
-        ("valence", "target_valence"),
-        ("danceability", "target_danceability"),
-        ("acousticness", "target_acousticness"),
-        ("instrumentalness", "target_instrumentalness"),
-        ("speechiness", "target_speechiness"),
-        ("liveness", "target_liveness"),
+    ("energy", "target_energy", 1.0),
+    ("valence", "target_valence", 1.0),
+    ("danceability", "target_danceability", 1.0),
+    ("acousticness", "target_acousticness", 1.0),
+    ("instrumentalness", "target_instrumentalness", 1.0),
+    ("speechiness", "target_speechiness", 1.0),
+    ("liveness", "target_liveness", 1.0),
     ]
 
-    for song_key, pref_key in numerical_features:
-        similarity = 1 - abs(user_prefs[pref_key] - song[song_key])
+    for song_key, pref_key, weight in numerical_features:
+        similarity = (1 - abs(user_prefs[pref_key] - song[song_key])) * weight
         score += similarity
         reasons.append(f"{song_key} similarity ({similarity:.2f})")
 
