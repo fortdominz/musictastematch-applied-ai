@@ -1,3 +1,7 @@
+anthropic
+ollama
 pandas
 pytest
+python-dotenv
+spotipy
 streamlit
