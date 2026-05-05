@@ -62,11 +62,17 @@ def get_features(genre: str, mood: str) -> dict:
     genre_key = genre.lower()
     mood_key = mood.lower()
 
+    # Try exact match first, then partial match
     genre_feats = GENRE_FEATURES.get(genre_key, {})
+    if not genre_feats:
+        for key in GENRE_FEATURES:
+            if key in genre_key or genre_key in key:
+                genre_feats = GENRE_FEATURES[key]
+                break
+
     mood_feats = MOOD_FEATURES.get(mood_key, {})
 
     def vary(value, amount=0.08):
-        """Add small random variation to a feature value."""
         return round(min(1.0, max(0.0, value + random.uniform(-amount, amount))), 3)
 
     def vary_tempo(value, amount=10):

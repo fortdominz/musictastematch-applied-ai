@@ -11,11 +11,14 @@ load_dotenv()
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-AVAILABLE_GENRES = [
-    "pop", "lofi", "rock", "metal", "jazz", "ambient", "synthwave",
-    "indie pop", "country", "electronic", "folk", "classical", "reggae",
-    "dream pop", "pop rock", "hip hop", "indie folk"
-]
+
+# Commenting the AVAILABLE_GENRES to allow for a vast variety
+
+# AVAILABLE_GENRES = [
+#     "pop", "lofi", "rock", "metal", "jazz", "ambient", "synthwave",
+#     "indie pop", "country", "electronic", "folk", "classical", "reggae",
+#     "dream pop", "pop rock", "hip hop", "indie folk"
+# ]
 
 AVAILABLE_MOODS = [
     "happy", "chill", "intense", "relaxed", "focused", "moody",
@@ -31,12 +34,13 @@ def build_profile_from_text(user_input: str) -> dict:
 
 User description: "{user_input}"
 
-Available genres: {', '.join(AVAILABLE_GENRES)}
+For preferred_genre: use the exact music genre the user is describing. Be specific — use terms like "afrobeats", "k-pop", "drill", "bossa nova", "gospel", "reggaeton", "trap", "blues", "r&b", "house", "techno", etc. Do not generalize to broad categories.
+
 Available moods: {', '.join(AVAILABLE_MOODS)}
 
 Return ONLY a valid JSON object with exactly these keys:
 {{
-    "preferred_genre": "one genre from the available list",
+    "preferred_genre": "the specific genre from the user description",
     "preferred_mood": "one mood from the available list",
     "target_energy": 0.0 to 1.0,
     "target_tempo_bpm": 60 to 180,
