@@ -1,7 +1,4 @@
 import os
-import json
-import re
-import ollama
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
@@ -13,43 +10,74 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
     client_secret=os.getenv("SPOTIFY_CLIENT_SECRET")
 ))
 
+# Rule-based feature lookup by genre and mood
+GENRE_FEATURES = {
+    "lofi":       {"energy": 0.35, "tempo_bpm": 80,  "acousticness": 0.80, "instrumentalness": 0.70, "danceability": 0.55},
+    "electronic": {"energy": 0.85, "tempo_bpm": 128, "acousticness": 0.05, "instrumentalness": 0.60, "danceability": 0.85},
+    "rock":       {"energy": 0.85, "tempo_bpm": 135, "acousticness": 0.15, "instrumentalness": 0.20, "danceability": 0.65},
+    "metal":      {"energy": 0.95, "tempo_bpm": 155, "acousticness": 0.05, "instrumentalness": 0.30, "danceability": 0.55},
+    "pop":        {"energy": 0.75, "tempo_bpm": 118, "acousticness": 0.20, "instrumentalness": 0.05, "danceability": 0.80},
+    "jazz":       {"energy": 0.40, "tempo_bpm": 95,  "acousticness": 0.75, "instrumentalness": 0.50, "danceability": 0.55},
+    "classical":  {"energy": 0.30, "tempo_bpm": 80,  "acousticness": 0.95, "instrumentalness": 0.90, "danceability": 0.30},
+    "ambient":    {"energy": 0.25, "tempo_bpm": 70,  "acousticness": 0.85, "instrumentalness": 0.85, "danceability": 0.35},
+    "folk":       {"energy": 0.40, "tempo_bpm": 95,  "acousticness": 0.80, "instrumentalness": 0.25, "danceability": 0.50},
+    "country":    {"energy": 0.60, "tempo_bpm": 105, "acousticness": 0.55, "instrumentalness": 0.10, "danceability": 0.65},
+    "reggae":     {"energy": 0.55, "tempo_bpm": 95,  "acousticness": 0.45, "instrumentalness": 0.20, "danceability": 0.75},
+    "synthwave":  {"energy": 0.70, "tempo_bpm": 115, "acousticness": 0.05, "instrumentalness": 0.55, "danceability": 0.70},
+    "indie pop":  {"energy": 0.65, "tempo_bpm": 118, "acousticness": 0.35, "instrumentalness": 0.10, "danceability": 0.70},
+    "dream pop":  {"energy": 0.50, "tempo_bpm": 100, "acousticness": 0.45, "instrumentalness": 0.35, "danceability": 0.55},
+    "pop rock":   {"energy": 0.78, "tempo_bpm": 120, "acousticness": 0.20, "instrumentalness": 0.10, "danceability": 0.72},
+    "hip hop":    {"energy": 0.75, "tempo_bpm": 95,  "acousticness": 0.15, "instrumentalness": 0.10, "danceability": 0.85},
+    "indie folk": {"energy": 0.40, "tempo_bpm": 90,  "acousticness": 0.75, "instrumentalness": 0.20, "danceability": 0.50},
+}
 
-def estimate_features(title: str, artist: str, genre: str, mood: str) -> dict:
-    """Use Llama 3.2 to estimate audio features for a song based on its metadata."""
+MOOD_FEATURES = {
+    "happy":     {"valence": 0.85, "speechiness": 0.06, "liveness": 0.14},
+    "chill":     {"valence": 0.55, "speechiness": 0.03, "liveness": 0.10},
+    "relaxed":   {"valence": 0.60, "speechiness": 0.03, "liveness": 0.10},
+    "intense":   {"valence": 0.45, "speechiness": 0.07, "liveness": 0.18},
+    "energetic": {"valence": 0.75, "speechiness": 0.08, "liveness": 0.20},
+    "aggressive":{"valence": 0.30, "speechiness": 0.08, "liveness": 0.22},
+    "moody":     {"valence": 0.35, "speechiness": 0.04, "liveness": 0.12},
+    "sad":       {"valence": 0.25, "speechiness": 0.04, "liveness": 0.10},
+    "romantic":  {"valence": 0.70, "speechiness": 0.04, "liveness": 0.12},
+    "focused":   {"valence": 0.55, "speechiness": 0.03, "liveness": 0.09},
+    "peaceful":  {"valence": 0.65, "speechiness": 0.02, "liveness": 0.08},
+    "nostalgic": {"valence": 0.50, "speechiness": 0.04, "liveness": 0.14},
+    "dreamy":    {"valence": 0.65, "speechiness": 0.03, "liveness": 0.10},
+    "hopeful":   {"valence": 0.75, "speechiness": 0.05, "liveness": 0.13},
+    "laid-back": {"valence": 0.60, "speechiness": 0.04, "liveness": 0.11},
+}
 
-    prompt = f"""You are a music analyst. Estimate the audio features for this song based on its title, artist, genre, and mood.
+DEFAULT_FEATURES = {
+    "energy": 0.55, "tempo_bpm": 100, "acousticness": 0.40,
+    "instrumentalness": 0.30, "danceability": 0.60,
+    "valence": 0.55, "speechiness": 0.05, "liveness": 0.12
+}
 
-Song: "{title}" by {artist}
-Genre: {genre}
-Mood: {mood}
 
-Return ONLY a valid JSON object with exactly these keys and float values between 0.0 and 1.0 (tempo_bpm between 60 and 200):
-{{
-    "energy": 0.0 to 1.0,
-    "tempo_bpm": 60 to 200,
-    "valence": 0.0 to 1.0,
-    "danceability": 0.0 to 1.0,
-    "acousticness": 0.0 to 1.0,
-    "instrumentalness": 0.0 to 1.0,
-    "speechiness": 0.0 to 1.0,
-    "liveness": 0.0 to 1.0
-}}
+def get_features(genre: str, mood: str) -> dict:
+    """Look up audio features for a genre/mood combination instantly."""
+    genre_key = genre.lower()
+    mood_key = mood.lower()
 
-Do not include any explanation, markdown, or code blocks. Return only the raw JSON object."""
+    genre_feats = GENRE_FEATURES.get(genre_key, {})
+    mood_feats = MOOD_FEATURES.get(mood_key, {})
 
-    response = ollama.chat(
-        model="llama3.2",
-        messages=[{"role": "user", "content": prompt}]
-    )
-
-    raw = response["message"]["content"].strip()
-    raw = re.sub(r"```json|```", "", raw).strip()
-
-    return json.loads(raw)
+    return {
+        "energy": genre_feats.get("energy", DEFAULT_FEATURES["energy"]),
+        "tempo_bpm": genre_feats.get("tempo_bpm", DEFAULT_FEATURES["tempo_bpm"]),
+        "acousticness": genre_feats.get("acousticness", DEFAULT_FEATURES["acousticness"]),
+        "instrumentalness": genre_feats.get("instrumentalness", DEFAULT_FEATURES["instrumentalness"]),
+        "danceability": genre_feats.get("danceability", DEFAULT_FEATURES["danceability"]),
+        "valence": mood_feats.get("valence", DEFAULT_FEATURES["valence"]),
+        "speechiness": mood_feats.get("speechiness", DEFAULT_FEATURES["speechiness"]),
+        "liveness": mood_feats.get("liveness", DEFAULT_FEATURES["liveness"]),
+    }
 
 
 def fetch_songs(query: str, genre: str, mood: str, limit: int = 10) -> list:
-    """Search Spotify for songs and estimate their audio features using Llama."""
+    """Search Spotify for songs and assign features instantly from lookup table."""
 
     results = sp.search(q=query, type="track", limit=limit)
     tracks = results["tracks"]["items"]
@@ -57,21 +85,14 @@ def fetch_songs(query: str, genre: str, mood: str, limit: int = 10) -> list:
     if not tracks:
         return []
 
+    features = get_features(genre, mood)
+
     songs = []
     for track in tracks:
-        title = track["name"]
-        artist = track["artists"][0]["name"]
-
-        try:
-            features = estimate_features(title, artist, genre, mood)
-        except Exception as e:
-            print(f"   ⚠️ Could not estimate features for {title}: {e}")
-            continue
-
         song = {
             "id": track["id"],
-            "title": title,
-            "artist": artist,
+            "title": track["name"],
+            "artist": track["artists"][0]["name"],
             "genre": genre,
             "mood": mood,
             "energy": features["energy"],
@@ -89,7 +110,7 @@ def fetch_songs(query: str, genre: str, mood: str, limit: int = 10) -> list:
 
 
 def build_catalog(user_genre: str, user_mood: str) -> list:
-    """Build a live catalog of songs from Spotify with AI-estimated audio features."""
+    """Build a live catalog of songs from Spotify with rule-based audio features."""
 
     print(f"   Searching Spotify for {user_genre} {user_mood} songs...")
     primary = fetch_songs(

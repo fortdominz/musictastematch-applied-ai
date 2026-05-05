@@ -1,58 +1,67 @@
-# 🎧 Model Card: Music Recommender Simulation
+# 🎧 Model Card: MusicTasteMatch 2.0
 
-## 1. Model Name  
+## 1. Model Name
 
-MusicTasteMatch 1.0
-
----
-
-## 2. Intended Use  
-
-Describe what your recommender is designed to do and who it is for. 
-
-This system suggests songs from an 18-track catalog based on a user's preferred genre, mood, energy, valence, tempo, danceability, acousticness, instrumentalness, speechiness, and liveness. It assumes the user can describe their taste numerically. It is designed for classroom exploration only, not for real users or production use.
+**MusicTasteMatch 2.0**
+Extended from MusicTasteMatch 1.0 (Module 3 — Music Recommender Simulation)
 
 ---
 
-## 3. How the Model Works  
+## 2. Intended Use
 
-Each song in the catalog gets a score by comparing it to the user's taste profile. If the song's genre matches the user's preferred genre it earns 2 points. If the mood matches it earns 1 point. For every numerical feature like energy or tempo, the system measures how close the song's value is to the user's target — the closer it is, the higher it scores. All these points add up to a total score, and the songs are ranked from highest to lowest. The top results are the recommendations.
-
----
-
-## 4. Data  
-
-The catalog contains 18 songs across genres including pop, lofi, rock, metal, jazz, ambient, synthwave, indie pop, country, electronic, folk, classical, reggae, and dream pop. Moods include happy, chill, intense, relaxed, focused, moody, romantic, energetic, peaceful, aggressive, nostalgic, laid-back, hopeful, and dreamy. The dataset was expanded from the original 10 songs. It reflects a broad but shallow range of taste — most genres have only one or two songs, which limits diversity in results.
+MusicTasteMatch 2.0 is an AI-powered music recommendation system designed for personal use and classroom exploration. A user describes their music mood in plain English, and the system translates that into a structured taste profile, fetches live songs from Spotify, scores them using content-based filtering, detects bias in the results, and generates an AI critique. It is not intended for production deployment or commercial use.
 
 ---
 
-## 5. Strengths  
+## 3. How the Model Works
 
-The system works best when the user's preferred genre has multiple songs in the catalog and their numerical targets are internally consistent. The pop and lofi profiles both produced intuitive top results. The scoring is fully transparent — every recommendation comes with a breakdown of exactly why it ranked where it did, which makes the system easy to understand and debug.
-
----
-
-## 6. Limitations and Bias 
-
-The system has several clear biases discovered through testing. First, genre weight dominance: a genre match alone adds +2.0 points, which can push genre-matching songs into the top results even when their mood directly contradicts the user's preference. The High-Energy Sad profile proved this — it got happy pop songs because they matched the genre, despite the user wanting sad music. Second, catalog imbalance amplifies this problem: when only one song exists for a genre (like metal), that song dominates completely and the remaining slots fill with numerically similar but genre-mismatched songs — a metal listener receiving pop recommendations in slots 3 through 5. Third, contradictory preferences produce weak results: the Extreme Acoustic High-Energy profile had all scores below 7.0 because no song could satisfy both targets simultaneously, yet the system still returned results with no warning to the user. Fourth, nonexistent genres and moods are handled silently: the cyberpunk/manic profile got results scoring around 4.7–4.9 with zero categorical matches — the system never signals that it found nothing meaningful.
+The system runs in six steps. First, Llama 3.2 reads the user's plain English description and extracts a structured preference profile — genre, mood, energy, valence, tempo, and other audio features. Second, the Spotify API searches its live catalog for songs matching that genre and mood. Third, a rule-based lookup table assigns audio feature values to each song based on its genre and mood. Fourth, the scoring engine compares every song to the user's profile — genre matches earn +2.0 points, mood matches earn +1.0, and numerical features are scored by closeness using 1 - |user_target - song_value|. Fifth, a bias detector analyzes the results and produces a confidence score from 0.0 to 1.0. Sixth, Llama 3.2 reviews the recommendations and writes a short honest critique flagging any mismatches.
 
 ---
 
-## 7. Evaluation  
+## 4. Data
 
-Three main profiles were tested: High-Energy Pop, Chill Lofi, and Intense Metal. Six adversarial profiles were also tested, including conflicting preferences, nonexistent categories, and extreme values. The pop and lofi profiles produced intuitive results with clear top matches. The metal profile revealed catalog imbalance bias. A weight shift experiment was run — doubling energy weight from 1.0 to 2.0 — which widened score gaps and shifted some rankings but did not change who ranked first in any profile. The adversarial profiles revealed that the system fails silently when preferences conflict or don't exist in the catalog.
-
----
-
-## 8. Future Work  
-
-First, add a diversity filter so the same genre cannot appear more than twice in the top 5 results. Second, add a confidence warning when no categorical matches are found, so the user knows the results are weak. Third, expand the catalog significantly — at least 5 songs per genre — so numerical similarity has meaningful options to rank within each category rather than spilling across genres.
+The system uses Spotify's live catalog of 100 million songs accessed through the Web API. Each query fetches 8-13 songs depending on availability. Audio features (energy, valence, tempo, danceability, acousticness, instrumentalness, speechiness, liveness) are assigned using a rule-based lookup table organized by genre and mood rather than Spotify's audio features API, which was deprecated for new developers in 2024. The system also retains the original 18-song CSV catalog from MusicTasteMatch 1.0 for testing purposes.
 
 ---
 
-## 9. Personal Reflection  
+## 5. Strengths
 
-My biggest learning moment was realizing that genre weight alone could override everything else in the scoring.
-A part of me expected mood to be the stronger signal, like, if someone wants sad music, mood should matter most, but the numbersshowed something different. A +2.0 genre match consistently overpowered a mood mismatch, which meant the system was recommending happy pop songs to someone who explicitly wanted sad music. That gap between what I designed and what actually happened taught me more about algorithmic bias than any explanation could.
-Using AI tools throughout this project saved a lot of time on boilerplate and helped me think through edge cases I wouldn't have considered alone, the adversarial profiles Copilot suggested were genuinely useful. But I had to double-check everything it wrote. At one point it left dead code after return statements and used the wrong variable name in load_songs, bugs that would have broken the program silently if I hadn't caught them. AI helped me move faster on this project, but I was always the one responsible for understanding whether the output was actually correct.
-What surprised me most was how convincing the results felt for well-matched profiles. The system has zero understanding of music, it just computes distances between numbers, but for the pop and lofi profiles, the recommendations felt genuinely accurate. That made me understand why real recommenders on Spotify feel "smart" even when they're doing something fundamentally similar underneath. If I extended this project, I would add a diversity filter to prevent genre repetition in the top results, a confidence warning when no categorical matches are found, and a much larger catalog with at least five songs per genre so numerical similarity has meaningful options to choose from within each category.
+The system works well for well-defined genres with strong Spotify representation — lofi, electronic, folk, and rock all return relevant results. The natural language interface removes the need for users to understand music terminology or numerical feature values. Every recommendation comes with a full scoring breakdown, making the system transparent and easy to debug. The bias detector adds a layer of honesty that most recommenders lack — it tells the user when results are weak rather than presenting everything with equal confidence.
+
+---
+
+## 6. Limitations and Bias
+
+The rule-based feature lookup assigns identical numerical values to all songs of the same genre and mood, which means scoring differences within a genre depend entirely on the categorical matches rather than actual song characteristics. Spotify search results vary between runs — the same query may return different songs each time, making results non-deterministic. The genre weight (+2.0) still dominates over any single numerical feature (max 1.0), meaning genre mismatches from Spotify's search can pollute the top results. Llama 3.2 running locally on CPU is slow — approximately 30-60 seconds per inference call — making the system impractical for real-time use without a faster inference backend. The system has no memory of previous sessions or user history, so it cannot learn or improve from past interactions.
+
+---
+
+## 7. Evaluation
+
+Nine automated tests were written and all passed in 0.35 seconds covering the bias detector, session logger, and scoring engine. Three end-to-end profiles were tested manually: a lofi study profile, a high-energy gym profile, and a sad acoustic rainy day profile. All three produced genre and mood matching results with confidence scores of 0.9 or 1.0. The AI critique correctly identified genre mismatches in the lofi profile (The Weeknd appearing in lofi results) and provided actionable suggestions in all three cases. A key surprise was that Spotify sometimes returns songs with titles containing the search keywords but belonging to completely different genres — for example, searching "lofi relaxed" returned "Loft Music" by The Weeknd because the word "loft" appeared in the title.
+
+---
+
+## 8. Future Work
+
+First, swap Llama 3.2 for the Anthropic Claude API to reduce inference time from minutes to seconds. Second, replace the rule-based feature lookup with real audio feature data from a licensed source to give songs genuinely different numerical profiles. Third, add a diversity filter so the same artist cannot appear more than once in the top results. Fourth, implement a feedback loop where users can rate recommendations and the system adjusts weights accordingly. Fifth, add a genre mismatch guardrail that filters out Spotify results whose artist genre doesn't match the requested genre before scoring.
+
+---
+
+## 9. Personal Reflection
+
+**What I learned about recommender systems:**
+Building 2.0 showed me that the hardest part of a recommender isn't the scoring logic — it's getting clean, relevant data into the system in the first place. Spotify's API deprecation of audio features forced a pivot that ended up teaching me more about system design than the original plan would have.
+
+**AI collaboration — one helpful instance:**
+Llama 3.2's natural language profile building worked better than expected. When given "gaming music," it correctly mapped to electronic/intense without any explicit rules for that mapping. That kind of zero-shot generalization is genuinely impressive for a 2GB local model.
+
+**AI collaboration — one flawed instance:**
+When asked to estimate audio features for a batch of songs in JSON format, Llama occasionally returned 7 results instead of 8, or included explanatory text inside the JSON array, breaking the parser. This required building a robust fallback system and taught me that AI outputs always need validation before being used downstream.
+
+**What surprised me about reliability testing:**
+The bias detector caught things I didn't anticipate — like The Weeknd appearing in lofi search results purely because the word "loft" matched the search query. Having an automated layer that flags these mismatches made the system feel genuinely more trustworthy than one that just silently returns whatever it finds.
+
+**Could this system be misused?**
+The system could theoretically be used to manipulate music discovery by crafting profiles that consistently surface specific artists. This could be prevented by adding transparency about how profiles are built and limiting the influence of any single feature in the scoring formula.
