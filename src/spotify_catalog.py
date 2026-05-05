@@ -1,3 +1,4 @@
+import random
 import os
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -57,22 +58,29 @@ DEFAULT_FEATURES = {
 
 
 def get_features(genre: str, mood: str) -> dict:
-    """Look up audio features for a genre/mood combination instantly."""
+    """Look up audio features for a genre/mood combination with slight variation."""
     genre_key = genre.lower()
     mood_key = mood.lower()
 
     genre_feats = GENRE_FEATURES.get(genre_key, {})
     mood_feats = MOOD_FEATURES.get(mood_key, {})
 
+    def vary(value, amount=0.08):
+        """Add small random variation to a feature value."""
+        return round(min(1.0, max(0.0, value + random.uniform(-amount, amount))), 3)
+
+    def vary_tempo(value, amount=10):
+        return round(min(200, max(60, value + random.uniform(-amount, amount))), 1)
+
     return {
-        "energy": genre_feats.get("energy", DEFAULT_FEATURES["energy"]),
-        "tempo_bpm": genre_feats.get("tempo_bpm", DEFAULT_FEATURES["tempo_bpm"]),
-        "acousticness": genre_feats.get("acousticness", DEFAULT_FEATURES["acousticness"]),
-        "instrumentalness": genre_feats.get("instrumentalness", DEFAULT_FEATURES["instrumentalness"]),
-        "danceability": genre_feats.get("danceability", DEFAULT_FEATURES["danceability"]),
-        "valence": mood_feats.get("valence", DEFAULT_FEATURES["valence"]),
-        "speechiness": mood_feats.get("speechiness", DEFAULT_FEATURES["speechiness"]),
-        "liveness": mood_feats.get("liveness", DEFAULT_FEATURES["liveness"]),
+        "energy": vary(genre_feats.get("energy", DEFAULT_FEATURES["energy"])),
+        "tempo_bpm": vary_tempo(genre_feats.get("tempo_bpm", DEFAULT_FEATURES["tempo_bpm"])),
+        "acousticness": vary(genre_feats.get("acousticness", DEFAULT_FEATURES["acousticness"])),
+        "instrumentalness": vary(genre_feats.get("instrumentalness", DEFAULT_FEATURES["instrumentalness"])),
+        "danceability": vary(genre_feats.get("danceability", DEFAULT_FEATURES["danceability"])),
+        "valence": vary(mood_feats.get("valence", DEFAULT_FEATURES["valence"])),
+        "speechiness": vary(mood_feats.get("speechiness", DEFAULT_FEATURES["speechiness"]), 0.02),
+        "liveness": vary(mood_feats.get("liveness", DEFAULT_FEATURES["liveness"]), 0.04),
     }
 
 
@@ -85,10 +93,9 @@ def fetch_songs(query: str, genre: str, mood: str, limit: int = 10) -> list:
     if not tracks:
         return []
 
-    features = get_features(genre, mood)
-
     songs = []
     for track in tracks:
+        features = get_features(genre, mood)  # called per song now
         song = {
             "id": track["id"],
             "title": track["name"],

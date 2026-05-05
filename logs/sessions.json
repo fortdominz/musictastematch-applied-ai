@@ -2257,5 +2257,1049 @@
       "flags": []
     },
     "critique": "test critique"
+  },
+  {
+    "timestamp": "2026-05-05T12:31:17.191323",
+    "user_input": "I want something to study to late at night",
+    "user_prefs": {
+      "preferred_genre": "lofi",
+      "preferred_mood": "focused",
+      "target_energy": 0.3,
+      "target_tempo_bpm": 85,
+      "target_valence": 0.5,
+      "target_danceability": 0.2,
+      "target_acousticness": 0.6,
+      "target_instrumentalness": 0.85,
+      "target_speechiness": 0.05,
+      "target_liveness": 0.1
+    },
+    "recommendations": [
+      {
+        "title": "LoFi Focused Energy",
+        "artist": "Study Music For Deep Focus",
+        "score": 10.14,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.65)",
+          "acousticness similarity (0.80)",
+          "instrumentalness similarity (0.85)",
+          "speechiness similarity (0.98)",
+          "liveness similarity (0.99)",
+          "tempo similarity (0.97)"
+        ]
+      },
+      {
+        "title": "Focused Bass Drops",
+        "artist": "Chill Lofi Gaming Music",
+        "score": 10.14,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.65)",
+          "acousticness similarity (0.80)",
+          "instrumentalness similarity (0.85)",
+          "speechiness similarity (0.98)",
+          "liveness similarity (0.99)",
+          "tempo similarity (0.97)"
+        ]
+      },
+      {
+        "title": "Refound Motivation",
+        "artist": "Lofi Fruits Music",
+        "score": 10.14,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.65)",
+          "acousticness similarity (0.80)",
+          "instrumentalness similarity (0.85)",
+          "speechiness similarity (0.98)",
+          "liveness similarity (0.99)",
+          "tempo similarity (0.97)"
+        ]
+      },
+      {
+        "title": "Focused",
+        "artist": "Belikeme",
+        "score": 10.14,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.65)",
+          "acousticness similarity (0.80)",
+          "instrumentalness similarity (0.85)",
+          "speechiness similarity (0.98)",
+          "liveness similarity (0.99)",
+          "tempo similarity (0.97)"
+        ]
+      },
+      {
+        "title": "Lofi Tracks for Focused Study Sessions",
+        "artist": "Lofi Study BGM",
+        "score": 10.14,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.65)",
+          "acousticness similarity (0.80)",
+          "instrumentalness similarity (0.85)",
+          "speechiness similarity (0.98)",
+          "liveness similarity (0.99)",
+          "tempo similarity (0.97)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.0,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "The recommendations generally align well with the user's request for \"lofi\" and \"focused\" music for late-night studying. However, the identical scores (10.14) and very generic titles for all five songs indicate a complete lack of differentiation, making them interchangeable rather than distinct recommendations. To improve, the system should either introduce more subtle variations within the \"lofi/focused\" parameters or leverage additional ranking signals to provide a more diverse and truly prioritized list."
+  },
+  {
+    "timestamp": "2026-05-05T12:31:34.394613",
+    "user_input": "Give me high energy songs for the gym",
+    "user_prefs": {
+      "preferred_genre": "electronic",
+      "preferred_mood": "energetic",
+      "target_energy": 0.9,
+      "target_tempo_bpm": 140,
+      "target_valence": 0.8,
+      "target_danceability": 0.8,
+      "target_acousticness": 0.1,
+      "target_instrumentalness": 0.3,
+      "target_speechiness": 0.2,
+      "target_liveness": 0.4
+    },
+    "recommendations": [
+      {
+        "title": "Energy",
+        "artist": "Elektronomia",
+        "score": 10.12,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.95)",
+          "acousticness similarity (0.95)",
+          "instrumentalness similarity (0.70)",
+          "speechiness similarity (0.88)",
+          "liveness similarity (0.80)",
+          "tempo similarity (0.94)"
+        ]
+      },
+      {
+        "title": "Energetic Excitement",
+        "artist": "Bumthesyx",
+        "score": 10.12,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.95)",
+          "acousticness similarity (0.95)",
+          "instrumentalness similarity (0.70)",
+          "speechiness similarity (0.88)",
+          "liveness similarity (0.80)",
+          "tempo similarity (0.94)"
+        ]
+      },
+      {
+        "title": "Energetic Fields",
+        "artist": "Kimchii",
+        "score": 10.12,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.95)",
+          "acousticness similarity (0.95)",
+          "instrumentalness similarity (0.70)",
+          "speechiness similarity (0.88)",
+          "liveness similarity (0.80)",
+          "tempo similarity (0.94)"
+        ]
+      },
+      {
+        "title": "Electronic Girl",
+        "artist": "Chinese Football",
+        "score": 10.12,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.95)",
+          "acousticness similarity (0.95)",
+          "instrumentalness similarity (0.70)",
+          "speechiness similarity (0.88)",
+          "liveness similarity (0.80)",
+          "tempo similarity (0.94)"
+        ]
+      },
+      {
+        "title": "Energetic Pop",
+        "artist": "Oliiah",
+        "score": 10.12,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.95)",
+          "acousticness similarity (0.95)",
+          "instrumentalness similarity (0.70)",
+          "speechiness similarity (0.88)",
+          "liveness similarity (0.80)",
+          "tempo similarity (0.94)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.0,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "The recommendations generally align with the user's request for high-energy gym music, focusing on the electronic genre and energetic mood. However, the identical scores for all five songs are a major red flag, indicating a lack of true differentiation or ranking by the system rather than actual strong matches. To improve, the scoring algorithm needs refinement to produce distinct relevance scores, ensuring better discrimination and a more robust ranking of potential songs."
+  },
+  {
+    "timestamp": "2026-05-05T12:31:46.273229",
+    "user_input": "Something sad and acoustic for a rainy day",
+    "user_prefs": {
+      "preferred_genre": "indie folk",
+      "preferred_mood": "sad",
+      "target_energy": 0.3,
+      "target_tempo_bpm": 90,
+      "target_valence": 0.2,
+      "target_danceability": 0.2,
+      "target_acousticness": 0.9,
+      "target_instrumentalness": 0.4,
+      "target_speechiness": 0.1,
+      "target_liveness": 0.3
+    },
+    "recommendations": [
+      {
+        "title": "In My Room",
+        "artist": "Chance Pe\u00f1a",
+        "score": 9.94,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.70)",
+          "acousticness similarity (0.85)",
+          "instrumentalness similarity (0.80)",
+          "speechiness similarity (0.94)",
+          "liveness similarity (0.80)",
+          "tempo similarity (1.00)"
+        ]
+      },
+      {
+        "title": "26",
+        "artist": "Caamp",
+        "score": 9.94,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.70)",
+          "acousticness similarity (0.85)",
+          "instrumentalness similarity (0.80)",
+          "speechiness similarity (0.94)",
+          "liveness similarity (0.80)",
+          "tempo similarity (1.00)"
+        ]
+      },
+      {
+        "title": "Strangers Now",
+        "artist": "Buffalo Traffic Jam",
+        "score": 9.94,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.70)",
+          "acousticness similarity (0.85)",
+          "instrumentalness similarity (0.80)",
+          "speechiness similarity (0.94)",
+          "liveness similarity (0.80)",
+          "tempo similarity (1.00)"
+        ]
+      },
+      {
+        "title": "Sadness As A Gift",
+        "artist": "Adrianne Lenker",
+        "score": 9.94,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.70)",
+          "acousticness similarity (0.85)",
+          "instrumentalness similarity (0.80)",
+          "speechiness similarity (0.94)",
+          "liveness similarity (0.80)",
+          "tempo similarity (1.00)"
+        ]
+      },
+      {
+        "title": "Miserable Man",
+        "artist": "David Kushner",
+        "score": 9.94,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.70)",
+          "acousticness similarity (0.85)",
+          "instrumentalness similarity (0.80)",
+          "speechiness similarity (0.94)",
+          "liveness similarity (0.80)",
+          "tempo similarity (1.00)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.0,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "The recommendations are highly aligned with the user's request for \"something sad and acoustic for a rainy day,\" with all songs perfectly matching the specified indie folk genre and sad mood. There are no obvious mismatches in terms of core criteria. However, the uniform high scores (9.94) and the bias detector's flag suggest a lack of differentiation or subtle variety among the strong matches. To improve, the system could aim to diversify the top results slightly, perhaps by exploring different sub-moods of 'sad' or stylistic variations within indie folk, to offer a richer, yet still aligned, listening experience beyond five near-identical matches."
+  },
+  {
+    "timestamp": "2026-05-05T12:34:55.686789",
+    "user_input": "I want something to study to late at night",
+    "user_prefs": {
+      "preferred_genre": "lofi",
+      "preferred_mood": "focused",
+      "target_energy": 0.3,
+      "target_tempo_bpm": 80,
+      "target_valence": 0.4,
+      "target_danceability": 0.2,
+      "target_acousticness": 0.6,
+      "target_instrumentalness": 0.95,
+      "target_speechiness": 0.1,
+      "target_liveness": 0.2
+    },
+    "recommendations": [
+      {
+        "title": "Lofi Music",
+        "artist": "Lo Fi Beats",
+        "score": 9.89,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.93)",
+          "valence similarity (0.92)",
+          "danceability similarity (0.65)",
+          "acousticness similarity (0.76)",
+          "instrumentalness similarity (0.82)",
+          "speechiness similarity (0.92)",
+          "liveness similarity (0.90)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "Loft Music",
+        "artist": "The Weeknd",
+        "score": 9.89,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.93)",
+          "valence similarity (0.92)",
+          "danceability similarity (0.65)",
+          "acousticness similarity (0.76)",
+          "instrumentalness similarity (0.82)",
+          "speechiness similarity (0.92)",
+          "liveness similarity (0.90)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "Yellow",
+        "artist": "Lofi Fruits Music",
+        "score": 9.89,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.93)",
+          "valence similarity (0.92)",
+          "danceability similarity (0.65)",
+          "acousticness similarity (0.76)",
+          "instrumentalness similarity (0.82)",
+          "speechiness similarity (0.92)",
+          "liveness similarity (0.90)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "Bajrang Baan-Lofi",
+        "artist": "Rasraj Ji Maharaj",
+        "score": 9.89,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.93)",
+          "valence similarity (0.92)",
+          "danceability similarity (0.65)",
+          "acousticness similarity (0.76)",
+          "instrumentalness similarity (0.82)",
+          "speechiness similarity (0.92)",
+          "liveness similarity (0.90)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "LoFi Focused Energy",
+        "artist": "Study Music For Deep Focus",
+        "score": 9.62,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.97)",
+          "valence similarity (0.78)",
+          "danceability similarity (0.59)",
+          "acousticness similarity (0.75)",
+          "instrumentalness similarity (0.74)",
+          "speechiness similarity (0.93)",
+          "liveness similarity (0.86)",
+          "tempo similarity (1.00)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.26,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "The recommendations largely align with the user's desire for 'lofi' and 'focused' music for studying, though the low score gap flag correctly identifies a lack of truly exceptional matches. There's a critical mismatch with \"Loft Music by The Weeknd,\" which is an R&B track completely unsuited for a study environment, clearly an incorrect classification despite its title. The system should implement stronger artist genre validation and audio analysis to filter out such clear miscategorizations."
+  },
+  {
+    "timestamp": "2026-05-05T12:35:07.959263",
+    "user_input": "Give me high energy songs for the gym",
+    "user_prefs": {
+      "preferred_genre": "electronic",
+      "preferred_mood": "energetic",
+      "target_energy": 0.9,
+      "target_tempo_bpm": 140,
+      "target_valence": 0.75,
+      "target_danceability": 0.8,
+      "target_acousticness": 0.1,
+      "target_instrumentalness": 0.2,
+      "target_speechiness": 0.2,
+      "target_liveness": 0.3
+    },
+    "recommendations": [
+      {
+        "title": "Pepas",
+        "artist": "Farruko",
+        "score": 10.2,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.99)",
+          "acousticness similarity (0.94)",
+          "instrumentalness similarity (0.65)",
+          "speechiness similarity (0.87)",
+          "liveness similarity (0.86)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "Tsunami",
+        "artist": "DVBBS",
+        "score": 10.2,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.99)",
+          "acousticness similarity (0.94)",
+          "instrumentalness similarity (0.65)",
+          "speechiness similarity (0.87)",
+          "liveness similarity (0.86)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "Animals",
+        "artist": "Martin Garrix",
+        "score": 10.2,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.99)",
+          "acousticness similarity (0.94)",
+          "instrumentalness similarity (0.65)",
+          "speechiness similarity (0.87)",
+          "liveness similarity (0.86)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "Dissolved Girl",
+        "artist": "Massive Attack",
+        "score": 10.2,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.99)",
+          "acousticness similarity (0.94)",
+          "instrumentalness similarity (0.65)",
+          "speechiness similarity (0.87)",
+          "liveness similarity (0.86)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "Energy",
+        "artist": "Elektronomia",
+        "score": 10.13,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.98)",
+          "valence similarity (0.95)",
+          "danceability similarity (0.98)",
+          "acousticness similarity (0.90)",
+          "instrumentalness similarity (0.67)",
+          "speechiness similarity (0.88)",
+          "liveness similarity (0.86)",
+          "tempo similarity (0.90)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.07,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "The recommendations are largely aligned with the user's request for \"high energy songs for the gym,\" featuring several strong electronic tracks. However, \"Dissolved Girl\" by Massive Attack is an obvious mismatch, as it's a slow, atmospheric trip-hop song that directly contradicts the desired energetic mood for a workout. To improve, the system should strictly filter for the target energy parameter, preventing the inclusion of downtempo tracks that are antithetical to the user's explicit high-energy requirement."
+  },
+  {
+    "timestamp": "2026-05-05T12:50:51.367826",
+    "user_input": "I want something to study to late at night",
+    "user_prefs": {
+      "preferred_genre": "lofi",
+      "preferred_mood": "focused",
+      "target_energy": 0.3,
+      "target_tempo_bpm": 75,
+      "target_valence": 0.5,
+      "target_danceability": 0.2,
+      "target_acousticness": 0.7,
+      "target_instrumentalness": 0.9,
+      "target_speechiness": 0.05,
+      "target_liveness": 0.2
+    },
+    "recommendations": [
+      {
+        "title": "LoFi Focused Energy",
+        "artist": "Study Music For Deep Focus",
+        "score": 10.11,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.98)",
+          "danceability similarity (0.72)",
+          "acousticness similarity (0.86)",
+          "instrumentalness similarity (0.78)",
+          "speechiness similarity (0.99)",
+          "liveness similarity (0.86)",
+          "tempo similarity (1.00)"
+        ]
+      },
+      {
+        "title": "Focused Bass Drops",
+        "artist": "Chill Lofi Gaming Music",
+        "score": 10.11,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.98)",
+          "danceability similarity (0.72)",
+          "acousticness similarity (0.86)",
+          "instrumentalness similarity (0.78)",
+          "speechiness similarity (0.99)",
+          "liveness similarity (0.86)",
+          "tempo similarity (1.00)"
+        ]
+      },
+      {
+        "title": "Refound Motivation",
+        "artist": "Lofi Fruits Music",
+        "score": 10.11,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.98)",
+          "danceability similarity (0.72)",
+          "acousticness similarity (0.86)",
+          "instrumentalness similarity (0.78)",
+          "speechiness similarity (0.99)",
+          "liveness similarity (0.86)",
+          "tempo similarity (1.00)"
+        ]
+      },
+      {
+        "title": "Focused",
+        "artist": "Belikeme",
+        "score": 10.11,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.98)",
+          "danceability similarity (0.72)",
+          "acousticness similarity (0.86)",
+          "instrumentalness similarity (0.78)",
+          "speechiness similarity (0.99)",
+          "liveness similarity (0.86)",
+          "tempo similarity (1.00)"
+        ]
+      },
+      {
+        "title": "Lofi",
+        "artist": "Domknowz",
+        "score": 10.11,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.98)",
+          "danceability similarity (0.72)",
+          "acousticness similarity (0.86)",
+          "instrumentalness similarity (0.78)",
+          "speechiness similarity (0.99)",
+          "liveness similarity (0.86)",
+          "tempo similarity (1.00)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.0,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "These recommendations align with the user's request for \"lofi\" and \"focused\" study music, effectively translating the \"study to late at night\" prompt. However, the identical scores for all songs, combined with repetitive and generic titles like \"LoFi Focused Energy\" and \"Focused Bass Drops,\" strongly indicate an over-reliance on exact keyword matching rather than nuanced musical differentiation. To improve, the system should incorporate a broader range of audio features or sub-genre variations to provide more diverse options, even within the specified lofi/focused parameters, allowing for more natural score differences and less rigid results."
+  },
+  {
+    "timestamp": "2026-05-05T12:51:11.234663",
+    "user_input": "Give me high energy songs for the gym",
+    "user_prefs": {
+      "preferred_genre": "electronic",
+      "preferred_mood": "energetic",
+      "target_energy": 0.9,
+      "target_tempo_bpm": 150,
+      "target_valence": 0.8,
+      "target_danceability": 0.85,
+      "target_acousticness": 0.1,
+      "target_instrumentalness": 0.2,
+      "target_speechiness": 0.4,
+      "target_liveness": 0.2
+    },
+    "recommendations": [
+      {
+        "title": "Energy",
+        "artist": "Elektronomia",
+        "score": 9.86,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.99)",
+          "valence similarity (1.00)",
+          "danceability similarity (0.94)",
+          "acousticness similarity (0.92)",
+          "instrumentalness similarity (0.52)",
+          "speechiness similarity (0.68)",
+          "liveness similarity (0.96)",
+          "tempo similarity (0.85)"
+        ]
+      },
+      {
+        "title": "Energetic Excitement",
+        "artist": "Bumthesyx",
+        "score": 9.86,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.99)",
+          "valence similarity (1.00)",
+          "danceability similarity (0.94)",
+          "acousticness similarity (0.92)",
+          "instrumentalness similarity (0.52)",
+          "speechiness similarity (0.68)",
+          "liveness similarity (0.96)",
+          "tempo similarity (0.85)"
+        ]
+      },
+      {
+        "title": "Energetic Fields",
+        "artist": "Kimchii",
+        "score": 9.86,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.99)",
+          "valence similarity (1.00)",
+          "danceability similarity (0.94)",
+          "acousticness similarity (0.92)",
+          "instrumentalness similarity (0.52)",
+          "speechiness similarity (0.68)",
+          "liveness similarity (0.96)",
+          "tempo similarity (0.85)"
+        ]
+      },
+      {
+        "title": "Electronic Girl",
+        "artist": "Chinese Football",
+        "score": 9.86,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.99)",
+          "valence similarity (1.00)",
+          "danceability similarity (0.94)",
+          "acousticness similarity (0.92)",
+          "instrumentalness similarity (0.52)",
+          "speechiness similarity (0.68)",
+          "liveness similarity (0.96)",
+          "tempo similarity (0.85)"
+        ]
+      },
+      {
+        "title": "Energetic Pop",
+        "artist": "Oliiah",
+        "score": 9.86,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.99)",
+          "valence similarity (1.00)",
+          "danceability similarity (0.94)",
+          "acousticness similarity (0.92)",
+          "instrumentalness similarity (0.52)",
+          "speechiness similarity (0.68)",
+          "liveness similarity (0.96)",
+          "tempo similarity (0.85)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.0,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "The recommendations are well-aligned with the user's request for high-energy electronic music suitable for the gym, accurately reflecting the desired genre and mood. However, the identical high scores for all tracks, flagged by the bias detector as a \"low score gap,\" suggests a lack of strong, differentiated matches. To improve, the system should refine its scoring mechanism to identify truly standout tracks or introduce more artist/sub-genre diversity among highly relevant recommendations."
+  },
+  {
+    "timestamp": "2026-05-05T12:51:24.954307",
+    "user_input": "Something sad and acoustic for a rainy day",
+    "user_prefs": {
+      "preferred_genre": "indie folk",
+      "preferred_mood": "sad",
+      "target_energy": 0.3,
+      "target_tempo_bpm": 100,
+      "target_valence": 0.15,
+      "target_danceability": 0.2,
+      "target_acousticness": 0.9,
+      "target_instrumentalness": 0.4,
+      "target_speechiness": 0.1,
+      "target_liveness": 0.3
+    },
+    "recommendations": [
+      {
+        "title": "Run to You",
+        "artist": "Ocie Elliott",
+        "score": 10.16,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.96)",
+          "valence similarity (0.88)",
+          "danceability similarity (0.77)",
+          "acousticness similarity (0.92)",
+          "instrumentalness similarity (0.87)",
+          "speechiness similarity (0.96)",
+          "liveness similarity (0.81)",
+          "tempo similarity (0.99)"
+        ]
+      },
+      {
+        "title": "Young Folks",
+        "artist": "Peter Bjorn and John",
+        "score": 10.16,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.96)",
+          "valence similarity (0.88)",
+          "danceability similarity (0.77)",
+          "acousticness similarity (0.92)",
+          "instrumentalness similarity (0.87)",
+          "speechiness similarity (0.96)",
+          "liveness similarity (0.81)",
+          "tempo similarity (0.99)"
+        ]
+      },
+      {
+        "title": "I Bet You Think About Me (feat. Chris Stapleton) (Taylor\u2019s Version) (From The Vault)",
+        "artist": "Taylor Swift",
+        "score": 10.16,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.96)",
+          "valence similarity (0.88)",
+          "danceability similarity (0.77)",
+          "acousticness similarity (0.92)",
+          "instrumentalness similarity (0.87)",
+          "speechiness similarity (0.96)",
+          "liveness similarity (0.81)",
+          "tempo similarity (0.99)"
+        ]
+      },
+      {
+        "title": "September Fields",
+        "artist": "Frazey Ford",
+        "score": 10.16,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.96)",
+          "valence similarity (0.88)",
+          "danceability similarity (0.77)",
+          "acousticness similarity (0.92)",
+          "instrumentalness similarity (0.87)",
+          "speechiness similarity (0.96)",
+          "liveness similarity (0.81)",
+          "tempo similarity (0.99)"
+        ]
+      },
+      {
+        "title": "Outta Control - Remix",
+        "artist": "50 Cent",
+        "score": 10.16,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.96)",
+          "valence similarity (0.88)",
+          "danceability similarity (0.77)",
+          "acousticness similarity (0.92)",
+          "instrumentalness similarity (0.87)",
+          "speechiness similarity (0.96)",
+          "liveness similarity (0.81)",
+          "tempo similarity (0.99)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.0,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "While several tracks like Ocie Elliott and Frazey Ford align well with the user's request for \"sad and acoustic indie folk,\" the recommendation of \"Outta Control - Remix by 50 Cent\" is an egregious mismatch across genre, mood, and energy. This glaring error, occurring despite a high confidence score and a flagged low score gap, reveals significant issues with the system's filtering and scoring mechanisms. To improve, the system must drastically enhance its genre and mood classification accuracy, ensuring that such obvious outliers are never scored identically to highly relevant songs."
+  },
+  {
+    "timestamp": "2026-05-05T12:59:48.056442",
+    "user_input": "I want something to study to late at night",
+    "user_prefs": {
+      "preferred_genre": "lofi",
+      "preferred_mood": "focused",
+      "target_energy": 0.3,
+      "target_tempo_bpm": 80,
+      "target_valence": 0.4,
+      "target_danceability": 0.1,
+      "target_acousticness": 0.7,
+      "target_instrumentalness": 0.9,
+      "target_speechiness": 0.1,
+      "target_liveness": 0.2
+    },
+    "recommendations": [
+      {
+        "title": "Refound Motivation",
+        "artist": "Lofi Fruits Music",
+        "score": 9.96,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.93)",
+          "valence similarity (0.79)",
+          "danceability similarity (0.58)",
+          "acousticness similarity (0.96)",
+          "instrumentalness similarity (0.87)",
+          "speechiness similarity (0.91)",
+          "liveness similarity (0.93)",
+          "tempo similarity (0.99)"
+        ]
+      },
+      {
+        "title": "Lofi Music",
+        "artist": "Lo Fi Beats",
+        "score": 9.95,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.95)",
+          "valence similarity (0.93)",
+          "danceability similarity (0.56)",
+          "acousticness similarity (0.88)",
+          "instrumentalness similarity (0.83)",
+          "speechiness similarity (0.93)",
+          "liveness similarity (0.91)",
+          "tempo similarity (0.97)"
+        ]
+      },
+      {
+        "title": "Studying Lofi Beats",
+        "artist": "Lofi Fruits Music",
+        "score": 9.93,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.89)",
+          "valence similarity (0.88)",
+          "danceability similarity (0.59)",
+          "acousticness similarity (0.94)",
+          "instrumentalness similarity (0.81)",
+          "speechiness similarity (0.91)",
+          "liveness similarity (0.93)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "Deep Think",
+        "artist": "Lofi Fruits Music",
+        "score": 9.85,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.97)",
+          "valence similarity (0.78)",
+          "danceability similarity (0.61)",
+          "acousticness similarity (0.88)",
+          "instrumentalness similarity (0.86)",
+          "speechiness similarity (0.93)",
+          "liveness similarity (0.85)",
+          "tempo similarity (0.97)"
+        ]
+      },
+      {
+        "title": "LoFi Focused Energy",
+        "artist": "Study Music For Deep Focus",
+        "score": 9.84,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.90)",
+          "valence similarity (0.93)",
+          "danceability similarity (0.53)",
+          "acousticness similarity (0.88)",
+          "instrumentalness similarity (0.83)",
+          "speechiness similarity (0.91)",
+          "liveness similarity (0.89)",
+          "tempo similarity (0.98)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.12,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "AI critique unavailable \u2014 API quota exceeded. Results above were generated by the scoring engine."
   }
 ]
