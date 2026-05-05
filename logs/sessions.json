@@ -3903,5 +3903,353 @@
       ]
     },
     "critique": "The recommendations strongly align with the user's explicit request for \"afrobeats\" and an \"energetic\" mood, with all songs fitting the specified genre and mood. However, the low score gap and prevalence of generic or instrumental \"type beat\" titles suggest the system is over-relying on keyword matches rather than identifying high-quality, representative tracks. The algorithm should be refined to prioritize more established artists and diverse, high-quality songs within the afrobeats genre to offer a more compelling selection."
+  },
+  {
+    "timestamp": "2026-05-05T14:59:50.485668",
+    "user_input": "I want chill music for a Sunday morning",
+    "user_prefs": {
+      "preferred_genre": "Lo-Fi",
+      "preferred_mood": "chill",
+      "target_energy": 0.25,
+      "target_tempo_bpm": 90,
+      "target_valence": 0.7,
+      "target_danceability": 0.35,
+      "target_acousticness": 0.8,
+      "target_instrumentalness": 0.75,
+      "target_speechiness": 0.1,
+      "target_liveness": 0.2
+    },
+    "recommendations": [
+      {
+        "title": "Boom Boom Pow",
+        "artist": "Black Eyed Peas",
+        "score": 9.47,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.73)",
+          "valence similarity (0.92)",
+          "danceability similarity (0.83)",
+          "acousticness similarity (0.60)",
+          "instrumentalness similarity (0.57)",
+          "speechiness similarity (0.92)",
+          "liveness similarity (0.93)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "Prophet Rides Again",
+        "artist": "Capleton",
+        "score": 9.41,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.72)",
+          "valence similarity (0.87)",
+          "danceability similarity (0.79)",
+          "acousticness similarity (0.64)",
+          "instrumentalness similarity (0.62)",
+          "speechiness similarity (0.93)",
+          "liveness similarity (0.87)",
+          "tempo similarity (0.97)"
+        ]
+      },
+      {
+        "title": "Love Is Only a Feeling",
+        "artist": "Joey Bada$$",
+        "score": 9.38,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.67)",
+          "valence similarity (0.92)",
+          "danceability similarity (0.77)",
+          "acousticness similarity (0.66)",
+          "instrumentalness similarity (0.62)",
+          "speechiness similarity (0.92)",
+          "liveness similarity (0.89)",
+          "tempo similarity (0.93)"
+        ]
+      },
+      {
+        "title": "Calming Chill",
+        "artist": "Lofi Fruits Music",
+        "score": 9.35,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.74)",
+          "valence similarity (0.89)",
+          "danceability similarity (0.81)",
+          "acousticness similarity (0.53)",
+          "instrumentalness similarity (0.56)",
+          "speechiness similarity (0.95)",
+          "liveness similarity (0.88)",
+          "tempo similarity (0.98)"
+        ]
+      },
+      {
+        "title": "Lo-Fi Chill",
+        "artist": "JS aka The Best",
+        "score": 9.33,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.68)",
+          "valence similarity (0.84)",
+          "danceability similarity (0.79)",
+          "acousticness similarity (0.61)",
+          "instrumentalness similarity (0.61)",
+          "speechiness similarity (0.92)",
+          "liveness similarity (0.90)",
+          "tempo similarity (0.97)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.15,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "The initial preference profile accurately captures the user's request for \"chill music for a Sunday morning.\" However, the top recommendations are severely mismatched; songs like \"Boom Boom Pow\" and \"Prophet Rides Again\" are high-energy tracks completely contrary to \"chill\" and Lo-Fi. The system desperately needs to improve its genre and mood tagging for well-known songs to prevent such glaring miscategorizations."
+  },
+  {
+    "timestamp": "2026-05-05T15:01:00.583046",
+    "user_input": "High energy afrobeats for a party",
+    "user_prefs": {
+      "preferred_genre": "afrobeats",
+      "preferred_mood": "energetic",
+      "target_energy": 0.9,
+      "target_tempo_bpm": 125,
+      "target_valence": 0.9,
+      "target_danceability": 0.9,
+      "target_acousticness": 0.2,
+      "target_instrumentalness": 0.1,
+      "target_speechiness": 0.3,
+      "target_liveness": 0.7
+    },
+    "recommendations": [
+      {
+        "title": "Energy (Stay Far Away)",
+        "artist": "Skepta",
+        "score": 9.18,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.72)",
+          "valence similarity (0.87)",
+          "danceability similarity (0.76)",
+          "acousticness similarity (0.86)",
+          "instrumentalness similarity (0.78)",
+          "speechiness similarity (0.77)",
+          "liveness similarity (0.52)",
+          "tempo similarity (0.90)"
+        ]
+      },
+      {
+        "title": "Energetic Chill Afro Lofi",
+        "artist": "Lazy Vibes",
+        "score": 8.98,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.71)",
+          "valence similarity (0.82)",
+          "danceability similarity (0.73)",
+          "acousticness similarity (0.74)",
+          "instrumentalness similarity (0.81)",
+          "speechiness similarity (0.80)",
+          "liveness similarity (0.47)",
+          "tempo similarity (0.90)"
+        ]
+      },
+      {
+        "title": "Energetic Revolution (Burnaboy x FelaKuti Type Beat (Free Afrobeats Instrumental)",
+        "artist": "Tukie",
+        "score": 8.98,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.57)",
+          "valence similarity (0.91)",
+          "danceability similarity (0.73)",
+          "acousticness similarity (0.78)",
+          "instrumentalness similarity (0.85)",
+          "speechiness similarity (0.76)",
+          "liveness similarity (0.53)",
+          "tempo similarity (0.84)"
+        ]
+      },
+      {
+        "title": "Calm Down (with Selena Gomez)",
+        "artist": "Rema",
+        "score": 8.97,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.65)",
+          "valence similarity (0.86)",
+          "danceability similarity (0.65)",
+          "acousticness similarity (0.85)",
+          "instrumentalness similarity (0.81)",
+          "speechiness similarity (0.80)",
+          "liveness similarity (0.53)",
+          "tempo similarity (0.84)"
+        ]
+      },
+      {
+        "title": "Calm Down (with Selena Gomez)",
+        "artist": "Rema",
+        "score": 8.97,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.69)",
+          "valence similarity (0.78)",
+          "danceability similarity (0.67)",
+          "acousticness similarity (0.87)",
+          "instrumentalness similarity (0.78)",
+          "speechiness similarity (0.79)",
+          "liveness similarity (0.50)",
+          "tempo similarity (0.89)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.21,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "The recommendations largely hit the \"afrobeats\" genre, but the \"energetic\" mood is poorly interpreted. Obvious mismatches include \"Energetic Chill Afro Lofi\" and \"Calm Down,\" which directly contradict a \"high energy\" party request, along with an instrumental track and a duplicate. To improve, the system must enhance its mood detection to filter out contradictory song titles and themes more effectively, ensuring all recommendations truly align with high-energy requirements."
+  },
+  {
+    "timestamp": "2026-05-05T15:01:55.203896",
+    "user_input": "Something sad and acoustic for a rainy day",
+    "user_prefs": {
+      "preferred_genre": "acoustic",
+      "preferred_mood": "sad",
+      "target_energy": 0.2,
+      "target_tempo_bpm": 85,
+      "target_valence": 0.1,
+      "target_danceability": 0.1,
+      "target_acousticness": 0.95,
+      "target_instrumentalness": 0.1,
+      "target_speechiness": 0.05,
+      "target_liveness": 0.2
+    },
+    "recommendations": [
+      {
+        "title": "Strangers - Acoustic",
+        "artist": "Kameron Marlowe",
+        "score": 9.13,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.59)",
+          "valence similarity (0.81)",
+          "danceability similarity (0.57)",
+          "acousticness similarity (0.47)",
+          "instrumentalness similarity (0.85)",
+          "speechiness similarity (0.97)",
+          "liveness similarity (0.90)",
+          "tempo similarity (0.97)"
+        ]
+      },
+      {
+        "title": "Hotel California - Live On MTV, 1994",
+        "artist": "Eagles",
+        "score": 9.04,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.71)",
+          "valence similarity (0.82)",
+          "danceability similarity (0.49)",
+          "acousticness similarity (0.39)",
+          "instrumentalness similarity (0.82)",
+          "speechiness similarity (0.99)",
+          "liveness similarity (0.91)",
+          "tempo similarity (0.92)"
+        ]
+      },
+      {
+        "title": "Tears in Heaven - Acoustic Live",
+        "artist": "Eric Clapton",
+        "score": 9.03,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.70)",
+          "valence similarity (0.83)",
+          "danceability similarity (0.46)",
+          "acousticness similarity (0.43)",
+          "instrumentalness similarity (0.82)",
+          "speechiness similarity (0.99)",
+          "liveness similarity (0.88)",
+          "tempo similarity (0.92)"
+        ]
+      },
+      {
+        "title": "Creep - Acoustic",
+        "artist": "Radiohead",
+        "score": 9.01,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.69)",
+          "valence similarity (0.83)",
+          "danceability similarity (0.43)",
+          "acousticness similarity (0.40)",
+          "instrumentalness similarity (0.87)",
+          "speechiness similarity (0.98)",
+          "liveness similarity (0.87)",
+          "tempo similarity (0.94)"
+        ]
+      },
+      {
+        "title": "Someone Else Calling You Baby",
+        "artist": "Luke Bryan",
+        "score": 9.0,
+        "reasons": [
+          "genre match (+2.0)",
+          "mood match (+1.0)",
+          "energy similarity (0.69)",
+          "valence similarity (0.80)",
+          "danceability similarity (0.50)",
+          "acousticness similarity (0.40)",
+          "instrumentalness similarity (0.76)",
+          "speechiness similarity (0.99)",
+          "liveness similarity (0.94)",
+          "tempo similarity (0.93)"
+        ]
+      }
+    ],
+    "confidence": {
+      "confidence_score": 0.9,
+      "genre_matches": 5,
+      "mood_matches": 5,
+      "score_gap": 0.12,
+      "genre_dominance": false,
+      "contradictory_prefs": false,
+      "no_categorical_matches": false,
+      "flags": [
+        "Low score gap \u2014 results are closely ranked, meaning no strong match exists."
+      ]
+    },
+    "critique": "The recommendations largely align with the explicit \"sad\" and \"acoustic\" preferences. However, iconic songs like \"Hotel California\" and \"Someone Else Calling You Baby,\" even in acoustic versions, might miss the deeply melancholic and introspective \"rainy day\" atmosphere the user likely intended due to their mainstream familiarity. To improve, the system should prioritize songs whose *inherent* character is somber and acoustic, rather than just popular tracks with an acoustic tag, which is also hinted at by the low score gap."
   }
 ]

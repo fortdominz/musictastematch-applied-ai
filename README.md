@@ -152,7 +152,7 @@ Spotify's search API is free, returns real songs from a catalog of 100 million t
 
 ## 🎥 Demo Walkthrough
 
-> 🔗 Loom video link — *to be added after recording*
+> 🔗 [Watch the demo walkthrough on Loom](https://www.loom.com/share/2e682286e00e4854b13feece69df9ee6)
 
 ---
 
@@ -200,3 +200,14 @@ musictastematch-applied-ai/
 ├── model_card.md
 ├── requirements.txt
 └── README.md
+
+
+## 👤 Portfolio Reflection
+
+MusicTasteMatch 2.0 represents a meaningful evolution in my development as an AI engineer. This project pushed me beyond static prototyping into the design and deployment of a modular, API-driven system — integrating live data retrieval via the Spotify Web API, natural language understanding via Google Gemini, content-based scoring, automated bias detection, and session logging into a cohesive end-to-end pipeline.
+
+The most significant engineering challenges were not in the AI layer itself, but in the infrastructure surrounding it — navigating API deprecations, managing rate limits across multiple providers, implementing graceful fallback mechanisms, and ensuring reproducible behavior across variable inputs. These constraints required deliberate architectural decisions and iterative problem-solving that went well beyond prompt engineering.
+
+I designed and implemented a confidence scoring system and AI self-critique loop that make the system's limitations transparent to the user — a design principle I believe is essential to responsible AI deployment. Rather than surfacing results with uniform confidence, the system actively flags low-confidence outputs and explains why recommendations may be misaligned with user intent.
+
+Throughout this project, I operated as the system architect — defining requirements, evaluating tradeoffs, supervising all generated code, and directing implementation decisions at every layer. AI tooling accelerated development, but every structural and functional decision reflected my own engineering judgment. This project is a demonstration of what I can build when I treat AI as a collaborator, not a replacement for technical thinking.
