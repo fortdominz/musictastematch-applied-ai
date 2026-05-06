@@ -4,8 +4,11 @@ Wraps the full pipeline and exposes /api/recommend
 """
 
 import os
+import pathlib
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 # Ensure logs directory exists before any logger import
@@ -144,6 +147,23 @@ def recommend(req: RecommendRequest):
 
     except Exception as exc:
         return {"error": str(exc)}
+
+
+# ---------- Serve React frontend (production) ----------
+
+_DIST = pathlib.Path(__file__).parent / "frontend" / "dist"
+
+if _DIST.exists():
+    app.mount("/assets", StaticFiles(directory=_DIST / "assets"), name="assets")
+
+@app.get("/{full_path:path}", include_in_schema=False)
+async def serve_spa(full_path: str):
+    if _DIST.exists():
+        target = _DIST / full_path
+        if target.exists() and target.is_file():
+            return FileResponse(target)
+        return FileResponse(_DIST / "index.html")
+    return {"detail": "Frontend not built. Run: cd frontend && npm run build"}
 
 
 # ---------- Dev entry point ----------

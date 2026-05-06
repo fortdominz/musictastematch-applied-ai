@@ -5,7 +5,7 @@ import SongCard from './components/SongCard.jsx'
 import ConfidenceBar from './components/ConfidenceBar.jsx'
 import CritiqueBlock from './components/CritiqueBlock.jsx'
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 export default function App() {
   const [phase, setPhase] = useState('idle')      // idle | loading | results
