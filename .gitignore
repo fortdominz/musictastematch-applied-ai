@@ -16,5 +16,6 @@ venv/
 .env
 
 .cache
-logs/frontend/node_modules
-frontend/dist
+logs/
+frontend/node_modules/
+frontend/dist/
