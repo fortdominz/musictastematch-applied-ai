@@ -1,8 +1,10 @@
 import random
 import os
+import json
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
+from google import genai
 
 load_dotenv()
 
@@ -10,6 +12,8 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
     client_id=os.getenv("SPOTIFY_CLIENT_ID"),
     client_secret=os.getenv("SPOTIFY_CLIENT_SECRET")
 ))
+
+gemini = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Rule-based feature lookup by genre and mood
 GENRE_FEATURES = {
@@ -57,12 +61,42 @@ DEFAULT_FEATURES = {
 }
 
 
+def get_mood_features_from_ai(mood: str) -> dict:
+    """Ask Gemini to estimate audio feature values for an unknown mood."""
+    prompt = f"""You are a music audio feature estimator.
+
+Given the mood "{mood}", return the most musically accurate audio feature values for songs with this mood.
+
+Return ONLY a valid JSON object with exactly these keys and float values:
+{{
+    "valence": 0.0 to 1.0,
+    "speechiness": 0.0 to 0.15,
+    "liveness": 0.05 to 0.35
+}}
+
+valence = positivity/happiness (0=dark/sad, 1=bright/happy)
+speechiness = how much spoken word content (most music is under 0.10)
+liveness = how live/concert-like it sounds (studio recordings are under 0.20)
+
+Return only the raw JSON object, no explanation."""
+    try:
+        response = gemini.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+        text = response.text.strip()
+        if text.startswith("```"):
+            text = text.split("```")[1]
+            if text.startswith("json"):
+                text = text[4:]
+        return json.loads(text.strip())
+    except Exception:
+        return {"valence": 0.55, "speechiness": 0.05, "liveness": 0.12}
+
+
 def get_features(genre: str, mood: str) -> dict:
-    """Look up audio features for a genre/mood combination with slight variation."""
+    """Look up audio features for a genre/mood combination with variation."""
     genre_key = genre.lower()
     mood_key = mood.lower()
 
-    # Try exact match first, then partial match
+    # Try exact match first, then partial match for genre
     genre_feats = GENRE_FEATURES.get(genre_key, {})
     if not genre_feats:
         for key in GENRE_FEATURES:
@@ -70,12 +104,21 @@ def get_features(genre: str, mood: str) -> dict:
                 genre_feats = GENRE_FEATURES[key]
                 break
 
+    # Try exact match for mood, then partial match, then ask Gemini
     mood_feats = MOOD_FEATURES.get(mood_key, {})
+    if not mood_feats:
+        for key in MOOD_FEATURES:
+            if key in mood_key or mood_key in key:
+                mood_feats = MOOD_FEATURES[key]
+                break
+    if not mood_feats:
+        print(f"   Unknown mood '{mood}' — asking Gemini for feature values...")
+        mood_feats = get_mood_features_from_ai(mood)
 
-    def vary(value, amount=0.08):
+    def vary(value, amount=0.18):
         return round(min(1.0, max(0.0, value + random.uniform(-amount, amount))), 3)
 
-    def vary_tempo(value, amount=10):
+    def vary_tempo(value, amount=18):
         return round(min(200, max(60, value + random.uniform(-amount, amount))), 1)
 
     return {
@@ -122,32 +165,123 @@ def fetch_songs(query: str, genre: str, mood: str, limit: int = 10) -> list:
     return songs
 
 
+def get_artist_seeds(genre: str, mood: str) -> list[str]:
+    """Ask Gemini for 5 real artists who represent this genre and mood well."""
+    prompt = f"""Name exactly 5 real, well-known music artists who are strongly associated with {genre} music and a {mood} mood/vibe.
+
+Return ONLY a JSON array of artist name strings. Example: ["Artist One", "Artist Two", "Artist Three", "Artist Four", "Artist Five"]
+No explanation, no markdown."""
+    try:
+        response = gemini.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+        text = response.text.strip()
+        if text.startswith("```"):
+            text = text.split("```")[1]
+            if text.startswith("json"):
+                text = text[4:]
+        return json.loads(text.strip())
+    except Exception:
+        return []
+
+
+def validate_and_label_songs(songs: list, user_genre: str, user_mood: str) -> list:
+    """Use Gemini to filter mismatched songs and assign realistic per-song genre/mood labels."""
+    if not songs:
+        return songs
+
+    song_list = "\n".join([
+        f"{i+1}. \"{s['title']}\" by {s['artist']}"
+        for i, s in enumerate(songs)
+    ])
+
+    prompt = f"""You are a strict music catalog validator for a recommender system.
+
+The user wants: {user_genre} music with a {user_mood} mood/vibe.
+
+Songs fetched from Spotify:
+{song_list}
+
+For each song, evaluate strictly:
+1. Is this artist genuinely known for {user_genre} music? If they are primarily a different genre, mark keep=false.
+2. Does the song/artist actually fit a {user_mood} mood?
+3. Assign the most accurate real genre and mood labels.
+
+Return ONLY a valid JSON array, one object per song:
+[
+  {{"index": 1, "keep": true, "genre": "r&b", "mood": "sexy"}},
+  {{"index": 2, "keep": false, "genre": "rap", "mood": "aggressive"}}
+]
+
+Be strict — it is better to keep fewer good matches than include mismatches.
+Respond with ONLY the JSON array, no explanation."""
+
+    try:
+        response = gemini.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+        text = response.text.strip()
+        if text.startswith("```"):
+            text = text.split("```")[1]
+            if text.startswith("json"):
+                text = text[4:]
+        labels = json.loads(text.strip())
+
+        result = []
+        for entry in labels:
+            idx = entry.get("index", 0) - 1
+            if 0 <= idx < len(songs):
+                if entry.get("keep", True):
+                    song = dict(songs[idx])
+                    song["genre"] = entry.get("genre", songs[idx]["genre"])
+                    song["mood"] = entry.get("mood", songs[idx]["mood"])
+                    result.append(song)
+
+        return result if result else songs
+
+    except Exception as e:
+        print(f"   ⚠️ Song validation skipped: {e}")
+        return songs
+
+
 def build_catalog(user_genre: str, user_mood: str) -> list:
-    """Build a live catalog of songs from Spotify with rule-based audio features."""
+    """Build a live catalog using artist-seed search + keyword fallback."""
 
-    print(f"   Searching Spotify for {user_genre} {user_mood} songs...")
-    primary = fetch_songs(
-        query=f"{user_genre} {user_mood}",
-        genre=user_genre,
-        mood=user_mood,
-        limit=8
-    )
+    # Step 1: Ask Gemini for real artists in this genre/mood
+    print(f"   Getting artist seeds for {user_genre} / {user_mood}...")
+    artists = get_artist_seeds(user_genre, user_mood)
+    print(f"   Seeds: {artists}")
 
-    print(f"   Searching for related {user_genre} songs...")
-    secondary = fetch_songs(
-        query=f"{user_genre} music",
+    all_songs = []
+
+    # Step 2: Search by artist name — much more genre-accurate than keyword search
+    for artist in artists[:4]:
+        songs = fetch_songs(
+            query=f"artist:{artist}",
+            genre=user_genre,
+            mood=user_mood,
+            limit=3
+        )
+        all_songs.extend(songs)
+
+    # Step 3: Add a keyword search as supplemental fill
+    print(f"   Supplemental search: {user_genre} {user_mood}...")
+    supplemental = fetch_songs(
+        query=f"{user_genre}",
         genre=user_genre,
         mood=user_mood,
         limit=5
     )
+    all_songs.extend(supplemental)
 
-    # Combine and deduplicate by track ID
-    all_songs = primary + secondary
+    # Deduplicate by title+artist (catches same song with different IDs)
     seen = set()
     unique_songs = []
     for song in all_songs:
-        if song["id"] not in seen:
-            seen.add(song["id"])
+        key = (song["title"].lower().strip(), song["artist"].lower().strip())
+        if key not in seen:
+            seen.add(key)
             unique_songs.append(song)
 
-    return unique_songs
+    # Step 4: Validate and label with Gemini
+    print(f"   Validating {len(unique_songs)} songs with AI...")
+    validated = validate_and_label_songs(unique_songs, user_genre, user_mood)
+    print(f"   ✅ {len(validated)} songs passed validation")
+
+    return validated

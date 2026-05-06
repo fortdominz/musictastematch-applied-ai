@@ -69,6 +69,48 @@ Be direct and honest."""
     return "AI critique unavailable after 3 attempts."
 
 
+def refine_preferences_from_critique(user_input: str, user_prefs: dict, critique_text: str) -> dict:
+    """Use Gemini to extract preference adjustments from the critique and return updated prefs."""
+    prompt = f"""You are helping refine a music recommendation preference profile.
+
+Original user request: "{user_input}"
+
+Current preference profile:
+- preferred_genre: {user_prefs['preferred_genre']}
+- preferred_mood: {user_prefs['preferred_mood']}
+- target_energy: {user_prefs['target_energy']}
+- target_valence: {user_prefs['target_valence']}
+- target_tempo_bpm: {user_prefs['target_tempo_bpm']}
+
+Critique of the current recommendations:
+{critique_text}
+
+Based ONLY on the critique, suggest specific adjustments to improve alignment.
+Respond with ONLY a valid JSON object containing only the keys that need adjusting.
+Valid keys: preferred_genre, preferred_mood, target_energy, target_valence, target_tempo_bpm, target_danceability, target_acousticness, target_instrumentalness, target_speechiness, target_liveness
+Numeric values must be between 0.0 and 1.0 (except target_tempo_bpm which is 60-200).
+If no adjustments are needed, respond with an empty JSON object: {{}}
+
+Example response: {{"target_energy": 0.6, "target_valence": 0.4}}"""
+
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
+        )
+        text = response.text.strip()
+        # Strip markdown code fences if present
+        if text.startswith("```"):
+            text = text.split("```")[1]
+            if text.startswith("json"):
+                text = text[4:]
+        import json
+        adjustments = json.loads(text.strip())
+        refined = {**user_prefs, **adjustments}
+        return refined
+    except Exception:
+        return user_prefs
+
 
 # ---------------- USING LLAMA TO INTEGRATE AI CAPABILITIES -----------------
 

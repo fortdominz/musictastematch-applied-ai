@@ -20,13 +20,6 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 #     "dream pop", "pop rock", "hip hop", "indie folk"
 # ]
 
-AVAILABLE_MOODS = [
-    "happy", "chill", "intense", "relaxed", "focused", "moody",
-    "romantic", "energetic", "peaceful", "aggressive", "nostalgic",
-    "laid-back", "hopeful", "dreamy", "sad"
-]
-
-
 def build_profile_from_text(user_input: str) -> dict:
     """Use Gemini to convert a plain English music description into a structured user_prefs dictionary."""
 
@@ -36,12 +29,12 @@ User description: "{user_input}"
 
 For preferred_genre: use the exact music genre the user is describing. Be specific — use terms like "afrobeats", "k-pop", "drill", "bossa nova", "gospel", "reggaeton", "trap", "blues", "r&b", "house", "techno", etc. Do not generalize to broad categories.
 
-Available moods: {', '.join(AVAILABLE_MOODS)}
+For preferred_mood: use the most accurate single word or short phrase that captures the emotional quality of what the user wants. Do NOT constrain yourself to a fixed list — use the actual mood the user is expressing. Examples: "sexy", "hype", "melancholic", "spiritual", "nostalgic", "grimy", "euphoric", "heartbroken", "triumphant", "tense", etc.
 
 Return ONLY a valid JSON object with exactly these keys:
 {{
     "preferred_genre": "the specific genre from the user description",
-    "preferred_mood": "one mood from the available list",
+    "preferred_mood": "the actual mood the user is expressing, no constraints",
     "target_energy": 0.0 to 1.0,
     "target_tempo_bpm": 60 to 180,
     "target_valence": 0.0 to 1.0,
